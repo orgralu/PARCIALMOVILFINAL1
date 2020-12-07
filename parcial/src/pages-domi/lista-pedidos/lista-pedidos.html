@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <span><h6  class="rig"><a (click)="salir()" style="color: red;">Salir</a></h6></span>
+      Listado de domicilios</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let p of productos; let i = index">
+      <ion-item>
+        <h3>{{p.categoria.nombre}} - ${{p.precio}} | <span style="color: orange;">{{p.estado}}</span> </h3>
+        <h2>{{p.descripcion}}</h2>
+        <h5>{{p.direccion}} </h5>
+        <h5>{{p.idusuario.celular}}</h5>
+      </ion-item>
+      <ion-item-options side="left">
+        <button (click)="editar(p)" ion-button color="success">
+          <ion-icon name="play-skip-forward-outline"></ion-icon>
+          Ver detalles
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

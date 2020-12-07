@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title  class="center">Iniciar Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <img class="icon" src="../../assets/imgs/login-rounded-right.png" alt="">
+  <form [formGroup]="formulario">
+  <ion-item>
+    <ion-label floating>Usuario</ion-label>
+    <ion-input type="text" formControlName="usuario"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Contraseña</ion-label>
+    <ion-input type="password" formControlName="contrasena"></ion-input>
+  </ion-item>
+  <button (click)="loguear()" expand="block" ion-button block color="secondary">Entrar</button>
+  <br>
+  </form>
+  <h6 class="center">o <a (click)="registro()">Registrate</a></h6>
+</ion-content>

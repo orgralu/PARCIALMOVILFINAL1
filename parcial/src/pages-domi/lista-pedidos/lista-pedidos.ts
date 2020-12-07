@@ -1,0 +1,56 @@
+import { Component } from '@angular/core';
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  ModalController,
+  AlertController,
+  ToastController
+} from "ionic-angular";
+import { ProductoProvider } from "../../providers/producto/producto";
+import { Producto } from "../../modelo/producto.modelo";
+import { DetallesPage } from "../detalles/detalles";
+
+@IonicPage()
+@Component({
+  selector: 'page-lista-pedidos',
+  templateUrl: 'lista-pedidos.html',
+})
+export class ListaPedidosPage {
+  productos: Array<Producto> = [];
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private productoProvider: ProductoProvider,
+    public modalCtrl: ModalController,
+    public alertCtrl: AlertController,
+    public toastCrl: ToastController
+  ) {}
+
+  ionViewDidLoad() {
+    this.productoProvider.listar_producto_pendiente().subscribe(
+      data => {
+        this.productos = data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  editar(producto) {
+    let productoModal = this.modalCtrl.create(DetallesPage, producto);
+    productoModal.present();
+  }
+
+  async salir(){
+    const toast = this.toastCrl.create({
+      message: 'Cerrando Sesión...',
+      duration: 3000
+    });
+    (await toast).present();
+    window.location.reload();
+  }
+
+}

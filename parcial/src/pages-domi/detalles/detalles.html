@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Detalles pedido</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formulario">
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>Descripcion</ion-label>
+        <ion-input type="text" formControlName="descripcion" readonly></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Direccion</ion-label>
+        <ion-input type="text" formControlName="direccion" readonly></ion-input>
+      </ion-item>
+      
+      <br>
+      <ion-item>
+        <ion-label>EPS</ion-label>
+        <ion-select formControlName="categoria" readonly>
+          <ion-option *ngFor="let c of categorias" value="{{c._id}}">{{c.nombre}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <h2 class="left">Precio $10.000</h2>
+      </ion-item>
+      <button (click)="cancelar()" ion-button block color="danger">Volver atras</button>
+      <button (click)="modificar()" ion-button block color="success">Aceptar</button>
+    </ion-list>
+  </form>
+</ion-content>
